@@ -17,9 +17,11 @@ const TableBody = ({ clonedMatrix }: TableBody) => {
 
     const filteredTarget = filterByProperty(clonedMatrix, 'amount', target);
 
-    const nearestValue = filteredTarget.reduce((acc: CellTypes, curr: CellTypes) => {
-      return Math.abs(target - curr.amount) <= Math.abs(target - acc.amount) ? curr : acc;
-    });
+    const nearestValue = filteredTarget.reduce(
+      (acc: CellTypes, curr: CellTypes) =>
+        Math.abs(target - curr.amount) <= Math.abs(target - acc.amount) ? curr : acc,
+      {}
+    );
     setNearestValue(nearestValue.amount);
   };
 

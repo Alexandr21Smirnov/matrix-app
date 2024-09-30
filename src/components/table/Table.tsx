@@ -9,8 +9,7 @@ const Table = () => {
   const { matrix } = useContext(StateContext);
   const clonedMatrix = structuredClone(matrix);
 
-
-  return matrix[0].length > 0 ? (
+  return matrix.length > 1 ? (
     <div>
       <div className={styles.tableWrapper}>
         <table className={styles.table}>

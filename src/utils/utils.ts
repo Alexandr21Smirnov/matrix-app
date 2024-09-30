@@ -60,7 +60,7 @@ export const generateTable = (formData: FormTypes): CellTypes[][] => {
 export function generateAverageValueColumns(matrix: CellTypes[][]) {
   let columns = [];
 
-  for (let col = 0; col < matrix[0].length; col++) {
+  for (let col = 0; col < matrix[0]?.length; col++) {
     let columnValues = [];
     for (let row = 0; row < matrix.length; row++) {
       columnValues.push(matrix[row][col]?.amount);
