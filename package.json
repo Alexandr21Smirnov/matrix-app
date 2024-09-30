@@ -1,5 +1,6 @@
 {
   "name": "matrix-app",
+  "homepage": "https://alexandr21smirnov.github.io/matrix-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
