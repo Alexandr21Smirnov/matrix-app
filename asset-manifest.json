@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.23074923.css",
-    "main.js": "/static/js/main.2df0eeb2.js",
-    "static/media/delete.svg": "/static/media/delete.346df223aadd282a8324b9a3887dbcb0.svg",
-    "index.html": "/index.html",
-    "static/media/add.svg": "/static/media/add.1cf9b7c81b4feda04fc59a5dff6cfe6e.svg",
-    "main.23074923.css.map": "/static/css/main.23074923.css.map",
-    "main.2df0eeb2.js.map": "/static/js/main.2df0eeb2.js.map"
+    "main.css": "/matrix-app/static/css/main.23074923.css",
+    "main.js": "/matrix-app/static/js/main.a2ba8376.js",
+    "static/media/delete.svg": "/matrix-app/static/media/delete.346df223aadd282a8324b9a3887dbcb0.svg",
+    "static/media/add.svg": "/matrix-app/static/media/add.1cf9b7c81b4feda04fc59a5dff6cfe6e.svg",
+    "index.html": "/matrix-app/index.html",
+    "main.23074923.css.map": "/matrix-app/static/css/main.23074923.css.map",
+    "main.a2ba8376.js.map": "/matrix-app/static/js/main.a2ba8376.js.map"
   },
   "entrypoints": [
     "static/css/main.23074923.css",
-    "static/js/main.2df0eeb2.js"
+    "static/js/main.a2ba8376.js"
   ]
 }
