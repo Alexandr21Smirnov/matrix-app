@@ -1,0 +1,116 @@
+.tableWrapper {
+  overflow: auto;
+  height: 100%;
+  max-height: 720px;
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 1620px;
+  margin: 0 auto;
+  min-width: 720px;
+  border: none;
+}
+.table thead tr {
+  font-weight: 600;
+  text-align: left;
+  border: none;
+  height: 2rem;
+  color: #fff;
+  background: #021a27;
+  font-size: 1rem;
+  padding: 2rem;
+  height: 2rem;
+}
+
+.table tr td:not(:last-child) {
+  border-right: 1px solid #021a27;
+}
+
+td {
+  height: 3rem;
+  min-width: 3.7rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.table tbody td:not(:first-child) {
+  cursor: pointer;
+}
+
+.table tbody td:nth-last-child(2) {
+  font-weight: 600;
+}
+
+.table tbody tr {
+  text-align: left;
+  border: none;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.table tbody tr td:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #021a27;
+  width: 5rem;
+}
+.table tbody tr td:not(:last-child, :first-child) {
+  background: #e3e3e3;
+}
+
+.table tbody tr:last-child td:not(:first-child) {
+  font-weight: 600;
+  cursor: unset !important;
+}
+
+.table tbody tr td:last-child {
+  background: #021a27;
+  width: 0.5rem;
+}
+
+.table tbody tr td:not(:last-child) {
+  border-bottom: 1px solid #021a27;
+}
+
+.table thead tr:first-child td:first-child {
+  border-radius: 10px 0 0 0;
+}
+.table thead tr:last-child td:last-child {
+  border-radius: 0 10px 0 0;
+}
+
+.table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 10px;
+}
+.table tbody tr:last-child td:last-child {
+  border-radius: 0 0 10px 0;
+}
+
+.initialText {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.highlight:hover {
+  background-color: rgb(2, 26, 39) !important;
+  color: #fff;
+  transition: fill 0.2s ease-in-out;
+}
+
+.table tbody tr:not(:last-child):hover td:not(:first-child, :last-child) {
+  background: #acc9d2;
+  cursor: pointer;
+}
+
+.delete {
+  fill: #fff;
+  transition: fill 0.2s ease-in-out;
+}
+.delete:hover {
+  fill: #d30000;
+}
