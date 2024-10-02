@@ -60,19 +60,17 @@ const TableBody = ({ clonedMatrix }: TableBodyProps) => {
   return (
     <tbody>
       {matrix.map((row, rowIndex) => {
-        const isLastRow = rowIndex === matrix.length - 1;
-
         return (
           <tr key={rowIndex}>
-            <td>{isLastRow ? '50th percentile' : `Cell values M = ${rowIndex + 1}`}</td>
+            <td>{isLastRow(rowIndex) ? '50th percentile' : `Cell values M = ${rowIndex + 1}`}</td>
             {row.map((cell, columnIndex) => {
               const { id, amount } = cell;
               const cellId = `${rowIndex}-${columnIndex}`;
               const isHighlighted = highlightedCells.includes(cellId);
               const hoverCellColor = getHeatMap(amount);
               const isRowHovered = hoveredSumRow === rowIndex;
-              const isSumCell = columnIndex === matrix[0].length - 1 && !isLastRow;
-              const displayAmount = isRowHovered && !isSumCell ? `${amount.toFixed(2)}%` : amount;
+              const sumCell = isSumCell(columnIndex) && !isLastRow(rowIndex);
+              const displayAmount = isRowHovered && !sumCell ? `${amount.toFixed(2)}%` : amount;
 
               return (
                 <td
@@ -80,8 +78,8 @@ const TableBody = ({ clonedMatrix }: TableBodyProps) => {
                   id={id.toString()}
                   onClick={() => handleCellClick(rowIndex, columnIndex)}
                   onMouseEnter={() => {
-                    if (!isLastRow) {
-                      if (isSumCell) {
+                    if (!isLastRow(rowIndex)) {
+                      if (sumCell) {
                         calculatePercentageCellValue(rowIndex);
                         setHoveredSumRow(rowIndex);
                       } else {
@@ -89,15 +87,15 @@ const TableBody = ({ clonedMatrix }: TableBodyProps) => {
                       }
                     }
                   }}
-                  onMouseLeave={() => handleMouseLeave(isSumCell, rowIndex)}
-                  style={getCellStyle(isSumCell, isHighlighted, isRowHovered, hoverCellColor)}
+                  onMouseLeave={() => handleMouseLeave(sumCell, rowIndex)}
+                  style={getCellStyle(sumCell, isHighlighted, isRowHovered, hoverCellColor)}
                 >
                   {displayAmount}
                 </td>
               );
             })}
-            <td onClick={() => !isLastRow && handleDeleteRow(rowIndex)}>
-              {!isLastRow && <DeleteIcon className={styles.delete} />}
+            <td onClick={() => !isLastRow(rowIndex) && handleDeleteRow(rowIndex)}>
+              {!isLastRow(rowIndex) && <DeleteIcon className={styles.delete} />}
             </td>
           </tr>
         );
