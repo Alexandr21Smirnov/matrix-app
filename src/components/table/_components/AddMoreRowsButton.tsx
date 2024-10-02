@@ -4,6 +4,7 @@ import { ReactComponent as AddIcon } from '../../../assets/icons/add.svg';
 import { generateAverageValueColumns, generateThreeDigitRandomNumber, uniqueID } from 'utils/utils';
 import { CellTypes } from 'types/types';
 import { StateContext } from 'context/Context';
+import { AVERAGE_ROW_ID } from 'const/const';
 
 type AddMoreRowsProps = {
   clonedMatrix: CellTypes[][];
@@ -13,23 +14,24 @@ const AddMoreRowsButton = ({ clonedMatrix }: AddMoreRowsProps) => {
   const { matrix, setMatrix } = useContext(StateContext);
 
   const addRow = () => {
-    const newIndex = clonedMatrix.push([]) - 1;
+    const newRow = clonedMatrix[0].map(() => ({
+      id: uniqueID(),
+      amount: generateThreeDigitRandomNumber(),
+    }));
+    const sum = newRow.slice(0, -1).reduce((acc, curr) => acc + curr.amount, 0);
+    newRow[newRow.length - 1].amount = sum;
+    let updatedMatrix = [...clonedMatrix, newRow];
 
-    matrix[0].forEach((_, index) => {
-      clonedMatrix[newIndex - 1][index] = {
-        id: uniqueID(),
-        amount: generateThreeDigitRandomNumber(),
-      };
-    });
-    const sum = clonedMatrix[newIndex - 1].slice(0, -1).reduce((acc, curr) => acc + curr.amount, 0);
-    const filteredMatrix = clonedMatrix.filter((subArray) => subArray.length > 0);
-    const average = generateAverageValueColumns(filteredMatrix);
-    clonedMatrix.pop();
-    clonedMatrix.push(average);
-    const averageSum = clonedMatrix[newIndex].slice(0, -1).reduce((acc, curr) => acc + curr.amount, 0);
-    clonedMatrix[newIndex - 1].slice(-1)[0]!.amount = sum;
-    clonedMatrix[newIndex].slice(-1)[0]!.amount = averageSum;
-    setMatrix(clonedMatrix);
+    updatedMatrix = updatedMatrix.filter((row) => !row.some((cell) => cell.id === AVERAGE_ROW_ID));
+
+    const averageRow = generateAverageValueColumns(updatedMatrix);
+
+    // fixed average id
+    averageRow.forEach((cell) => (cell.id = AVERAGE_ROW_ID));
+
+    updatedMatrix.push(averageRow);
+
+    setMatrix(updatedMatrix);
   };
 
   return (

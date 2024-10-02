@@ -3,13 +3,16 @@ import React, { useContext } from 'react';
 
 const TableHead = () => {
   const { matrix } = useContext(StateContext);
+  if (!matrix.length) return null;
+  const headerLength = matrix[0].length;
+
   return (
     <thead>
       <tr>
         <td />
         {matrix[0].map((_, index) => (
           <td key={index}>
-            {matrix[0].length - 1 === index ? <span>Sum values</span> : <span>Cell values N = {index + 1}</span>}
+            {index === headerLength - 1 ? <span>Sum values</span> : <span>Cell values N = {index + 1}</span>}
           </td>
         ))}
         <td />

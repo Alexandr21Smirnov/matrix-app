@@ -7,12 +7,11 @@ type ButtonProps = {
   centered?: boolean;
 };
 
-const Button = ({ handleClick, centered, children }: ButtonProps) => {
+const Button = ({ handleClick, centered = false, children }: ButtonProps) => {
+  const className = `${styles.button} ${centered ? styles.centered : ''}`;
 
-  const classes = [styles.button];
-  if (centered) classes.push(styles.centered);
   return (
-    <button type='submit' onClick={handleClick} className={classes.join(' ')}>
+    <button type='submit' onClick={handleClick} className={className}>
       {children}
     </button>
   );

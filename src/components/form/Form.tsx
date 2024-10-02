@@ -1,5 +1,5 @@
 import { StateContext } from 'context/Context';
-import React, { FormEvent, useContext, useMemo } from 'react';
+import React, { FormEvent, useCallback, useContext, useMemo } from 'react';
 import Input from './_components/input/Input';
 import styles from './Form.module.css';
 import { generateTable } from 'utils/utils';
@@ -7,6 +7,7 @@ import Button from '../ui/button/Button';
 
 const Form = () => {
   const { formData, setMatrix } = useContext(StateContext);
+  const { rows, columns, limit } = formData;
 
   const formInput = useMemo(
     () => [
@@ -14,7 +15,7 @@ const Form = () => {
         id: 1,
         name: 'rows',
         mark: 'M',
-        value: formData.rows,
+        value: rows,
         maxValue: 100,
         minValue: 0,
         description: 'Number of rows',
@@ -23,7 +24,7 @@ const Form = () => {
         id: 2,
         name: 'columns',
         mark: 'N',
-        value: formData.columns,
+        value: columns,
         maxValue: 100,
         minValue: 0,
         description: 'Number of columns',
@@ -32,8 +33,8 @@ const Form = () => {
         id: 3,
         name: 'limit',
         mark: 'X',
-        value: formData.limit,
-        maxValue: formData.rows * formData.columns,
+        value: limit,
+        maxValue: rows * columns,
         minValue: 1,
         description: 'Limit for nearest by value cells',
       },
@@ -41,11 +42,14 @@ const Form = () => {
     [formData]
   );
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const table = generateTable(formData);
-    setMatrix(table);
-  };
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>): void => {
+      e.preventDefault();
+      const table = generateTable(formData);
+      setMatrix(table);
+    },
+    [formData, setMatrix]
+  );
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>

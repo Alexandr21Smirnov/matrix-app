@@ -58,9 +58,6 @@ td {
   background: #021a27;
   width: 5rem;
 }
-.table tbody tr td:not(:last-child, :first-child) {
-  background: #e3e3e3;
-}
 
 .table tbody tr:last-child td:not(:first-child) {
   font-weight: 600;
@@ -94,17 +91,6 @@ td {
   font-size: 1.5rem;
   color: #fff;
   margin: 0 auto;
-}
-
-.highlight:hover {
-  background-color: rgb(2, 26, 39) !important;
-  color: #fff;
-  transition: fill 0.2s ease-in-out;
-}
-
-.table tbody tr:not(:last-child):hover td:not(:first-child, :last-child) {
-  background: #acc9d2;
-  cursor: pointer;
 }
 
 .delete {

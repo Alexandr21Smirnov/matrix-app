@@ -5,7 +5,7 @@ import { StateContext } from 'context/Context';
 type InputProps = {
   mark: string;
   name: string;
-  value: number | undefined;
+  value: number;
   description: string;
   maxValue: number;
   minValue: number;

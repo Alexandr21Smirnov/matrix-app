@@ -7,20 +7,23 @@ import styles from './Table.module.css';
 
 const Table = () => {
   const { matrix } = useContext(StateContext);
+
+  if (matrix.length <= 1) {
+    return <h3 className={styles.initialText}>Add rows and columns</h3>;
+  }
+
   const clonedMatrix = structuredClone(matrix);
 
-  return matrix.length > 1 ? (
+  return (
     <div>
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <TableHead />
-          <TableBody clonedMatrix={clonedMatrix}/>
+          <TableBody clonedMatrix={clonedMatrix} />
         </table>
       </div>
       <AddMoreRowsButton clonedMatrix={clonedMatrix} />
     </div>
-  ) : (
-    <h3 className={styles.initialText}>Add rows and columns</h3>
   );
 };
 

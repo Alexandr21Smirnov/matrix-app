@@ -1,9 +1,8 @@
 .form {
-	display: flex;
-	justify-content: center;
-	margin: 0 auto;
-	max-width: 100%;
-	flex-direction: inherit;
-	gap: .5rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 100%;
+  flex-direction: inherit;
+  gap: 0.5rem;
 }
-
