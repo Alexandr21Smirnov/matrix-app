@@ -6,12 +6,12 @@ export function useHighlightCells(matrix: CellTypes[][], limit: number) {
   const [highlightedCells, setHighlightedCells] = useState<string[]>([]);
   const [hoveredSumRow, setHoveredSumRow] = useState<number | null>(null);
 
-  const handleMouseOver = (targetCell: number, targetValue: number) => {
+  const handleHighlightCells = (targetCell: number, targetValue: number) => {
     const nearestCells = findNearestCells(matrix, targetCell, targetValue, limit);
     setHighlightedCells(nearestCells);
   };
 
-  const handleMouseOut = () => {
+  const handleUnHighlightCells = () => {
     setHighlightedCells([]);
   };
 
@@ -20,7 +20,7 @@ export function useHighlightCells(matrix: CellTypes[][], limit: number) {
     hoveredSumRow,
     setHoveredSumRow,
     setHighlightedCells,
-    handleMouseOver,
-    handleMouseOut,
+    handleHighlightCells,
+    handleUnHighlightCells,
   };
 }

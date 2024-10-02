@@ -1,4 +1,4 @@
-import { AVERAGE_ROW_ID } from 'const/const';
+import { AVERAGE_ROW_ID, DEFAULT_CELL_COLOR, HIGHLIGHTED_CELL_COLOR } from 'const/const';
 import { CellTypes, FormTypes } from 'types/types';
 
 export const generateThreeDigitRandomNumber = () => {
@@ -91,3 +91,15 @@ export function findNearestCells(matrix: CellTypes[][], targetCell: number, targ
   nearestCells.sort((a, b) => a.distance - b.distance);
   return nearestCells.slice(0, limit).map((cell) => `${cell.row}-${cell.col}`);
 }
+
+export const getCellStyle = (
+  isSumCell: boolean,
+  isHighlighted: boolean,
+  isRowHovered: boolean,
+  hoverCellColor: string
+) => {
+  if (isSumCell) return { background: DEFAULT_CELL_COLOR };
+  if (isHighlighted) return { background: HIGHLIGHTED_CELL_COLOR };
+  if (isRowHovered) return { background: hoverCellColor };
+  return { background: DEFAULT_CELL_COLOR };
+};
