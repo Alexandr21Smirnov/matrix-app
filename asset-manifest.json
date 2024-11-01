@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/matrix-app/static/css/main.3d339a64.css",
-    "main.js": "/matrix-app/static/js/main.a0fe2d2e.js",
+    "main.js": "/matrix-app/static/js/main.0475ee49.js",
     "static/media/delete.svg": "/matrix-app/static/media/delete.346df223aadd282a8324b9a3887dbcb0.svg",
     "static/media/add.svg": "/matrix-app/static/media/add.1cf9b7c81b4feda04fc59a5dff6cfe6e.svg",
     "index.html": "/matrix-app/index.html",
     "main.3d339a64.css.map": "/matrix-app/static/css/main.3d339a64.css.map",
-    "main.a0fe2d2e.js.map": "/matrix-app/static/js/main.a0fe2d2e.js.map"
+    "main.0475ee49.js.map": "/matrix-app/static/js/main.0475ee49.js.map"
   },
   "entrypoints": [
     "static/css/main.3d339a64.css",
-    "static/js/main.a0fe2d2e.js"
+    "static/js/main.0475ee49.js"
   ]
 }
