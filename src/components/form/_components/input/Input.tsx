@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useCallback, useContext } from 'react';
+import { ChangeEvent, memo, useCallback, useContext } from 'react';
 import styles from './Input.module.css';
 import { StateContext } from 'context/Context';
 

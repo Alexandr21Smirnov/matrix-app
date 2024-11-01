@@ -11,3 +11,10 @@ export type CellTypes = {
   id: CellId;
   amount: CellValue;
 };
+
+export type CellWithDistance = {
+  value: number;
+  distance: number;
+  row: number;
+  col: number;
+};

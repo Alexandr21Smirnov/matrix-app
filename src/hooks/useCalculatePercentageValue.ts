@@ -1,5 +1,5 @@
+import { removePercentSign } from 'helpers/generalHelper';
 import { CellTypes } from 'types/types';
-import { removePercentSign } from 'utils/utils';
 
 export function useCalculatePercentageValue(
   clonedMatrix: CellTypes[][],
@@ -8,25 +8,34 @@ export function useCalculatePercentageValue(
   const calculatePercentageCellValue = (rowIndex: number) => {
     const row = clonedMatrix[rowIndex];
     const totalAmount = row[row.length - 1]?.amount;
+
     if (totalAmount === 0) return;
 
-    row.slice(0, -1).forEach((cell) => {
-      cell.amount = (cell.amount / totalAmount) * 100;
-    });
+    const updatedCells = row.slice(0, -1).map((cell) => ({
+      ...cell,
+      amount: (cell.amount / totalAmount) * 100,
+    }));
 
-    setMatrix(clonedMatrix);
+    const newRow = [...updatedCells, { ...row[row.length - 1] }];
+    const updatedMatrix = clonedMatrix.map((r, index) => (index === rowIndex ? newRow : r));
+    setMatrix(updatedMatrix);
   };
 
   const getIntegerCellValue = (rowIndex: number) => {
     const row = clonedMatrix[rowIndex];
     const totalAmount = row[row.length - 1]?.amount;
 
-    row.slice(0, -1).forEach((cell) => {
-      const percentageValue = removePercentSign(cell.amount);
-      cell.amount = Math.round((totalAmount * percentageValue) / 100);
+    if (totalAmount === 0) return;
+
+    row.slice(0, -1).map((cell) => {
+      const percentageValueWithoutSign = removePercentSign(cell.amount);
+      cell.amount = Math.round((totalAmount * percentageValueWithoutSign) / 100);
     });
 
-    setMatrix(clonedMatrix);
+    const newRow = [...row.slice(0, -1), { ...row[row.length - 1] }];
+
+    const updatedMatrix = clonedMatrix.map((r, index) => (index === rowIndex ? newRow : r));
+    setMatrix(updatedMatrix);
   };
 
   return {

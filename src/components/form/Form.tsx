@@ -1,9 +1,9 @@
 import { StateContext } from 'context/Context';
-import React, { FormEvent, useCallback, useContext, useMemo } from 'react';
+import { FormEvent, useCallback, useContext, useMemo } from 'react';
 import Input from './_components/input/Input';
 import styles from './Form.module.css';
-import { generateTable } from 'utils/utils';
 import Button from '../ui/button/Button';
+import { generateTable } from 'helpers/tableHelper';
 
 const Form = () => {
   const { formData, setMatrix } = useContext(StateContext);

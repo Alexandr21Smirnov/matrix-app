@@ -1,5 +1,5 @@
 import { StateContext } from 'context/Context';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 const TableHead = () => {
   const { matrix } = useContext(StateContext);

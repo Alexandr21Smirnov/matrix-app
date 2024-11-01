@@ -1,6 +1,6 @@
+import { findNearestCells } from 'helpers/tableHelper';
 import { useState } from 'react';
 import { CellTypes } from 'types/types';
-import { findNearestCells } from 'utils/utils';
 
 export function useHighlightCells(matrix: CellTypes[][], limit: number) {
   const [highlightedCells, setHighlightedCells] = useState<string[]>([]);

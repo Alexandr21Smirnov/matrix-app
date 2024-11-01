@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import TableHead from './_components/TableHead';
 import { StateContext } from 'context/Context';
 import TableBody from './_components/TableBody';
