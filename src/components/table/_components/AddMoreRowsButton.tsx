@@ -7,16 +7,12 @@ import { AVERAGE_ROW_ID } from 'const/const';
 import { generateThreeDigitRandomNumber, uniqueID } from 'helpers/generalHelper';
 import { generateAverageValueColumns } from 'helpers/tableHelper';
 
-type AddMoreRowsProps = {
-  clonedMatrix: CellTypes[][];
-};
-
-const AddMoreRowsButton = ({ clonedMatrix }: AddMoreRowsProps) => {
-  const { setMatrix } = useContext(StateContext);
+const AddMoreRowsButton = () => {
+  const { matrix, setMatrix } = useContext(StateContext);
 
   const addRow = () => {
     const createNewRow = () =>
-      clonedMatrix[0].map(() => ({
+      matrix[0].map(() => ({
         id: uniqueID(),
         amount: generateThreeDigitRandomNumber(),
       }));
@@ -26,7 +22,7 @@ const AddMoreRowsButton = ({ clonedMatrix }: AddMoreRowsProps) => {
     const newRow = createNewRow();
     newRow[newRow.length - 1].amount = calculateSum(newRow);
 
-    const updatedMatrix = [...clonedMatrix, newRow].filter((row) => !row.some((cell) => cell.id === AVERAGE_ROW_ID));
+    const updatedMatrix = [...matrix, newRow].filter((row) => !row.some((cell) => cell.id === AVERAGE_ROW_ID));
 
     const averageRow = generateAverageValueColumns(updatedMatrix).map((cell) => ({
       ...cell,

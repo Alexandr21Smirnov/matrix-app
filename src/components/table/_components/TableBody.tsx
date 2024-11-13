@@ -15,22 +15,18 @@ import {
 } from 'helpers/tableHelper';
 import { useHighlightCells } from 'hooks/useHighlightCells';
 
-type TableBodyProps = {
-  clonedMatrix: CellTypes[][];
-};
-
-const TableBody = ({ clonedMatrix }: TableBodyProps) => {
+const TableBody = () => {
   const { formData, matrix, setMatrix } = useContext(StateContext);
   const { hoveredSumRow, highlightedCells, setHoveredSumRow, handleHighlightCells, handleUnHighlightCells } =
-    useHighlightCells(clonedMatrix, formData.limit);
-  const { calculatePercentageCellValue, getIntegerCellValue } = useCalculatePercentageValue(clonedMatrix, setMatrix);
-  const { getHeatMap } = useHeatMap(clonedMatrix);
+    useHighlightCells(matrix, formData.limit);
+  const { calculatePercentageCellValue, getIntegerCellValue } = useCalculatePercentageValue(matrix, setMatrix);
+  const { getHeatMap } = useHeatMap(matrix);
 
   const isLastRow = (rowIndex: number) => rowIndex === matrix.length - 1;
   const isSumCell = (columnIndex: number) => columnIndex === matrix[0].length - 1;
 
   const handleAddValueByAmount = (rowIndex: number, cellIndex: number, amount: number) => {
-    const updatedMatrix = updateCellAmount(clonedMatrix, rowIndex, cellIndex, amount);
+    const updatedMatrix = updateCellAmount(matrix, rowIndex, cellIndex, amount);
     const newAverageRow = createAverageRow(updatedMatrix);
     setMatrix(mergeAverageRow(updatedMatrix, newAverageRow));
   };
@@ -47,13 +43,10 @@ const TableBody = ({ clonedMatrix }: TableBodyProps) => {
   const handleMouseEnter = useCallback(
     (rowIndex: number, columnIndex: number) => {
       if (!isSumCell(columnIndex)) {
-        handleHighlightCells(
-          rowIndex * clonedMatrix[0].length + columnIndex,
-          clonedMatrix[rowIndex][columnIndex].amount
-        );
+        handleHighlightCells(rowIndex * matrix[0].length + columnIndex, matrix[rowIndex][columnIndex].amount);
       }
     },
-    [handleHighlightCells, clonedMatrix]
+    [handleHighlightCells, matrix]
   );
 
   const handleMouseLeave = useCallback(
@@ -69,7 +62,7 @@ const TableBody = ({ clonedMatrix }: TableBodyProps) => {
   );
 
   const handleDeleteRow = (index: number) => {
-    const updatedMatrix = clonedMatrix.filter((_, idx) => idx !== index);
+    const updatedMatrix = matrix.filter((_, idx) => idx !== index);
     const matrixWithoutAverage = updatedMatrix.filter((row) => !row.some((cell) => cell.id === AVERAGE_ROW_ID));
     const newAverageRow = generateAverageValueColumns(matrixWithoutAverage).map((cell) => ({
       ...cell,

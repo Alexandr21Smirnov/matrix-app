@@ -12,17 +12,15 @@ const Table = () => {
     return <h3 className={styles.initialText}>Add rows and columns</h3>;
   }
 
-  const clonedMatrix = structuredClone(matrix);
-
   return (
     <div>
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <TableHead />
-          <TableBody clonedMatrix={clonedMatrix} />
+          <TableBody />
         </table>
       </div>
-      <AddMoreRowsButton clonedMatrix={clonedMatrix} />
+      <AddMoreRowsButton />
     </div>
   );
 };
